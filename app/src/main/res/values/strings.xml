@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">money_exchange</string>
+    <string name="exchange_money_title">CAMBIO DE MONEDAS</string>
+    <string name="money_to_convert">MONEDA INICIAL</string>
+    <string name="convert_dolar">DOLAR</string>
+    <string name="convert_euro">EURO</string>
+    <string name="convert_cop">COP</string>
+    <string name="money_converted">MONEDA FINAL</string>
+    <string name="cambio_moneda">CONVERTIR</string>
+    <string name="value_input">Ingrese el monto</string>
+    <string name="required_field">Campo obligatorio</string>
+    <string name="exchange_b">CAMBIO</string>
+    <string name="result_exchange">Resultado</string>
+    <string name="warning_quantity">Ingresar cantidad</string>
+    <string name="colombian_pesos">pesos</string>
+    <string name="dolars">dolares</string>
+    <string name="euros">euros</string>
+    <string name="dif_coin">Monedas diferentes</string>
+</resources>
