@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">money_exchange</string>
+    <string name="app_name">Money Exchange</string>
     <string name="exchange_money_title">CAMBIO DE MONEDAS</string>
     <string name="money_to_convert">MONEDA INICIAL</string>
     <string name="convert_dolar">DOLAR</string>
@@ -12,8 +12,9 @@
     <string name="exchange_b">CAMBIO</string>
     <string name="result_exchange">Resultado</string>
     <string name="warning_quantity">Ingresar cantidad</string>
-    <string name="colombian_pesos">pesos</string>
-    <string name="dolars">dolares</string>
-    <string name="euros">euros</string>
-    <string name="dif_coin">Monedas diferentes</string>
+    <string name="dif_coin">Revise que las monedas sean diferentes y que no hayan campos vacios</string>
+    <string name="cop_plural">PESOS</string>
+    <string name="dolar_plural">DOLARS</string>
+    <string name="euro_plural">EUROS</string>
+    <string name="result">RESULTADO:</string>
 </resources>

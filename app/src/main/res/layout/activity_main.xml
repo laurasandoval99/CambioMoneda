@@ -4,29 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D3BB75"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/exchange_money_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         android:fontFamily="sans-serif-smallcaps"
+        android:padding="0dp"
         android:text="@string/exchange_money_title"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="24sp" />
+        android:textColor="@color/md_brown_900"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/value_text_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        app:helperText="@string/required_field">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/value_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:backgroundTint="#E8DAB0"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="@string/value_input"
+            android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/money_to_convert_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/money_to_convert"
-        android:textColor="@color/black" />
+        android:textColor="@color/md_brown_900"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <RadioGroup
         android:id="@+id/money_to_convert_radio_group"
@@ -40,30 +66,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/convert_dolar" />
+            android:text="@string/convert_dolar"
+            android:textColor="@color/md_brown_900" />
 
         <RadioButton
             android:id="@+id/convert_euro_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/convert_euro" />
+            android:text="@string/convert_euro"
+            android:textColor="@color/md_brown_900" />
 
         <RadioButton
             android:id="@+id/convert_cop_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/convert_cop" />
+            android:text="@string/convert_cop"
+            android:textColor="@color/md_brown_900" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/money_converted_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/money_converted"
-        android:textColor="@color/black" />
+        android:textColor="@color/md_brown_900"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <RadioGroup
         android:id="@+id/money_converted_radio_group"
@@ -77,56 +109,61 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/convert_dolar" />
+            android:text="@string/convert_dolar"
+            android:textColor="@color/md_brown_900" />
 
         <RadioButton
             android:id="@+id/converted_euro_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/convert_euro" />
+            android:text="@string/convert_euro"
+            android:textColor="@color/md_brown_900" />
 
         <RadioButton
             android:id="@+id/converted_cop_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/convert_cop" />
+            android:text="@string/convert_cop"
+            android:textColor="@color/md_brown_900" />
     </RadioGroup>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/value_text_input_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        app:helperText="@string/required_field">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/value_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-smallcaps"
-            android:hint="@string/value_input"
-            android:inputType="numberDecimal" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/exhange_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="@string/exchange_b" />
 
     <TextView
         android:id="@+id/result_text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="30dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="@string/result_exchange"
-        android:textColor="@color/black"
+        android:text="@string/result"
+        android:textColor="@color/md_brown_900"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/exhange_button"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="#E8DAB0"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/exchange_b"
+        android:textColor="@color/md_brown_900"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:strokeColor="@color/black" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="217dp"
+        android:layout_height="77dp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        app:srcCompat="@drawable/coin" />
 
 </LinearLayout>

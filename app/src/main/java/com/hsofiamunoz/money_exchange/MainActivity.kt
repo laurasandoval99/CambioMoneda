@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.hsofiamunoz.money_exchange.databinding.ActivityMainBinding
 
 private const val SPACE = " "
-
+private const val EMPTY = ""
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,84 +17,119 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
-
         setContentView(mainBinding.root)
+
+        //action
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        supportActionBar!!.setIcon(R.mipmap.ic_launcher)
 
         mainBinding.exhangeButton.setOnClickListener {
             // Variables
             val dinero = mainBinding.valueEditText.text.toString()
-            var resultado = 0.0
+            var resultado: Double = 0.0
 
-            val initial_coin = if(mainBinding.convertDolarRadioButton.isChecked) getString(R.string.convert_dolar) else
-                            if(mainBinding.convertedEuroRadioButton.isChecked) getString(R.string.convert_euro) else getString(R.string.convert_cop)
 
-            val final_coin = if(mainBinding.convertedDolarRadioButton.isChecked) getString(R.string.dolars) else
-                            if(mainBinding.convertedEuroRadioButton.isChecked) getString(R.string.convert_euro) else getString(R.string.convert_cop)
+            val dolar = if (mainBinding.convertDolarRadioButton.isChecked) getString(R.string.convert_dolar) else getString(R.string.convert_euro)
+            val cop = if (mainBinding.convertCopRadioButton.isChecked) getString(R.string.convert_cop) else getString(R.string.convert_euro)
+
+
+            val dolar_f = if (mainBinding.convertedDolarRadioButton.isChecked) getString(R.string.convert_dolar) else EMPTY
+            val euro_f = if (mainBinding.convertedEuroRadioButton.isChecked) getString(R.string.convert_euro) else EMPTY
+            val cop_f = if (mainBinding.convertedCopRadioButton.isChecked) getString(R.string.convert_cop) else EMPTY
+
 
             if (dinero.isNotEmpty()) {
                 // DOLARES A EUROS Y PESOS
-                if (initial_coin == getString(R.string.convert_dolar))
-                {
-                    if(final_coin == getString(R.string.convert_euro)){
-                        resultado = dinero.toDouble()*1.8
-                        saveCoin(initial_coin,final_coin,dinero,resultado)
-                    }
-                    else{
-                        if (final_coin == getString(R.string.convert_cop)){
-                            resultado = dinero.toDouble()*3405.90
-                            saveCoin(initial_coin,final_coin,dinero,resultado)
-                        }
-                        else Toast.makeText(this, getString(R.string.dif_coin),Toast.LENGTH_SHORT).show()
-                    }
-                }
+                if (dolar == getString(R.string.convert_dolar)) {
+                    if (euro_f == getString(R.string.convert_euro)) {
+                        resultado = dinero.toDouble() * 0.84
+                        saveCoin(dinero, resultado)
 
-                else{
-                    // COP A DOLARES Y EUROS
-                    if (initial_coin == getString(R.string.convert_cop))
-                    {
-                        if(final_coin == getString(R.string.convert_dolar))
-                        {
-                            resultado = dinero.toDouble()*0.00027
-                            saveCoin(initial_coin,final_coin,dinero,resultado)
+
+                    } else {
+                        if (cop_f == getString(R.string.convert_cop)) {
+                            resultado = dinero.toDouble() * 3659.5
+                            saveCoin(dinero, resultado)
+
                         }
-                        else{
-                            if(final_coin == getString(R.string.convert_euro)){
-                                resultado = dinero.toDouble()*0.00023
-                                saveCoin(initial_coin,final_coin,dinero,resultado)
+                        else {
+                            Toast.makeText(this, getString(R.string.dif_coin), Toast.LENGTH_LONG).show()
+                            cleanViews()
+                        }
+
+                    }
+                } else {
+                    // COP A DOLARES Y EUROS
+                    if (cop == getString(R.string.convert_cop)) {
+                        if (dolar_f == getString(R.string.convert_dolar)) {
+                            resultado = dinero.toDouble() * 0.00028
+                            saveCoin(dinero, resultado)
+
+                        } else {
+                            if (euro_f == getString(R.string.convert_euro)) {
+                                resultado = dinero.toDouble() * 0.00023
+                                saveCoin(dinero, resultado)
+
+                            } else {
+                                Toast.makeText(
+                                    this,
+                                    getString(R.string.dif_coin),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                cleanViews()
                             }
-                            else Toast.makeText(this, getString(R.string.dif_coin),Toast.LENGTH_SHORT).show()
                         }
 
                     }
                     // EURO A DOLAR Y COP
-                    else
-                    {
-                        if(final_coin == getString(R.string.convert_dolar))
+                    else {
+                        if (dolar_f == getString(R.string.convert_dolar)) {
+                            resultado = dinero.toDouble() * 1.19
+                            saveCoin(dinero, resultado)
+
+                        } else
                         {
-                            resultado = dinero.toDouble()*1.18
-                            saveCoin(initial_coin,final_coin,dinero,resultado)
-                        }
-                        else{
-                            if (final_coin == getString(R.string.convert_cop)){
-                                resultado = dinero.toDouble()*4306.16
-                                saveCoin(initial_coin,final_coin,dinero,resultado)
+                            if (cop_f == getString(R.string.convert_cop)) {
+                                resultado = dinero.toDouble() * 4355.08
+                                saveCoin(dinero, resultado)
+                            } else {
+                                Toast.makeText(this, getString(R.string.dif_coin), Toast.LENGTH_LONG).show()
+                                cleanViews()
                             }
-                            else Toast.makeText(this, getString(R.string.dif_coin),Toast.LENGTH_SHORT).show()
+
                         }
                     }
 
                 }
 
-            }
-            else Toast.makeText(this, getString(R.string.warning_quantity), Toast.LENGTH_SHORT).show()
-        }
 
+            } else Toast.makeText(this, getString(R.string.warning_quantity), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun cleanViews() {
+        with(mainBinding) {
+            resultTextView.text = EMPTY
+            valueEditText.setText(EMPTY)
+        }
     }
 
 
-    private fun saveCoin(initialCoin: String, finalCoin: String, dinero: String, resultado: Double) {
-        val newCoin = Coin(initialCoin,finalCoin,dinero,resultado)
-        mainBinding.resultTextView.text = newCoin.initial_coin+SPACE+ newCoin.final_coin+ SPACE+ newCoin.resultado.toFloat().toString()
+    private fun saveCoin(dinero: String, resultado: Double) {
+        val euro_f = if (mainBinding.convertedEuroRadioButton.isChecked) getString(R.string.convert_euro) else EMPTY
+        val cop_f = if (mainBinding.convertedCopRadioButton.isChecked) getString(R.string.convert_cop) else EMPTY
+
+        val newCoin = Coin( dinero, resultado)
+        if(cop_f == getString(R.string.convert_cop))
+        {
+            mainBinding.resultTextView.text = getString(R.string.result_exchange) + SPACE + SPACE + newCoin.resultado.toFloat().toString() + SPACE + getString(R.string.cop_plural)
+        }
+        else{
+            if(euro_f == getString(R.string.convert_euro))
+                mainBinding.resultTextView.text = getString(R.string.result_exchange) + SPACE + SPACE + newCoin.resultado.toFloat().toString() + SPACE + getString(R.string.euro_plural)
+            else
+                mainBinding.resultTextView.text = getString(R.string.result_exchange) + SPACE + SPACE + newCoin.resultado.toFloat().toString() + SPACE + getString(R.string.dolar_plural)
+        }
 
     }
 
